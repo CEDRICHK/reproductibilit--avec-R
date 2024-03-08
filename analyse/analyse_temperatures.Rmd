@@ -1,0 +1,46 @@
+
+---
+title: "Analyse des Températures Moyennes par Mois"
+author: "Cédric Hassen-khodja"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+```
+
+## Introduction
+
+Cette analyse vise à explorer les variations des températures moyennes par mois à l'aide d'un ensemble de données simplifié. L'objectif est de visualiser ces températures pour identifier les tendances saisonnières.
+
+## Chargement des données
+
+Les données sont stockées dans un fichier CSV nommé `temperatures.csv`. Chaque ligne représente la température moyenne pour un mois donné.
+
+```{r load-data}
+data <- read.csv("../data/temperatures.csv")
+# Convertir 'Mois' en facteur avec les niveaux dans l'ordre correct
+data$Mois <- factor(data$Mois, levels = c("Janvier", "Février", "Mars", "Avril", "Mai", "Juin", 
+                                          "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"))
+head(data)
+```
+
+## Analyse des données
+
+Nous allons créer un graphique des températures moyennes par mois pour visualiser les tendances.
+
+```{r plot-data}
+ggplot(data, aes(x = Mois, y = Temperature)) +
+  geom_line(aes(group = 1)) + # Ajouter une ligne, forcer tous les points à être considérés comme un seul groupe
+  geom_point() + # Ajouter des points
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + # Incliner les étiquettes des mois
+  labs(title = "Températures moyennes par mois",
+       x = "Mois",
+       y = "Température (°C)")
+```
+
+## Conclusion
+
+Cette visualisation nous aide à comprendre comment les températures varient au cours de l'année, mettant en évidence les tendances saisonnières dans la région étudiée.

@@ -1,0 +1,20 @@
+Métadonnées pour l'analyse des températures moyennes par mois
+
+Titre de l'étude: Analyse des variations saisonnières des températures
+Description: Cette étude vise à illustrer les variations moyennes des températures par mois dans une ville donnée.
+
+Données:
+- Source: Données simulées pour l'exemple.
+- Format: CSV
+- Variables: Mois (catégorique), Température (numérique, en °C)
+
+Analyse:
+- Logiciel utilisé: R
+- Version de R: 4.3.2
+- Packages utilisés: ggplot2 pour la visualisation des données.
+
+Objectif:
+- Créer une visualisation des températures moyennes par mois pour identifier les tendances saisonnières.
+
+Auteur: Cédric Hassen-Khodja
+Date: 27/02/2024

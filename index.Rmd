@@ -1,0 +1,290 @@
+---
+title: "Reproductibilité avec R"
+author: 
+  - "Cédric Hassen-Khodja"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    css: [xaringan-themer.css,"custom-style.css"]
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanExtra)
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#035AA6",
+  secondary_color = "#03A696")
+```
+
+```{r xaringanExtra, echo = FALSE}
+xaringanExtra::use_progress_bar(color = "#0051BA", location = "top", height = "10px")
+```
+
+## La recherche reproductible
+
+**La recherche reproductible :**une recherche dont toutes les informations pertinentes sont accessibles, permettant à n'importe quel chercheur indépendant de reproduire les résultats.
+
+--
+
+**La réplication :** l'obtention de résultats cohérents en utilisant des méthodologies différentes.
+
+--
+
+**La répétabilité :** l'obtention de résultats cohérents en utilisant la même méthodologie dans le même cadre expérimental.
+
+---
+
+## La figure seule
+
+```{r fig, echo=FALSE, eval=TRUE, out.width='70%'}
+knitr::include_graphics("./fig/temp.png")
+```
+
+---
+
+## La figure avec les données
+
+.pull-left[
+```{r fig2, echo=FALSE, eval=TRUE, out.width='70%'}
+knitr::include_graphics("./fig/temp.png")
+```
+]
+.pull-right[
+
+```{r data, echo=FALSE}
+data <- read.csv("./data/temperatures.csv")
+data
+```
+]
+
+---
+
+## La figure avec les données et les métadonnées
+
+.pull-left[
+```{r fig3, echo=FALSE, eval=TRUE, out.width='80%'}
+knitr::include_graphics("./fig/temp.png")
+```
+
+```{r metadata, echo=FALSE, out.width='80%'}
+knitr::include_graphics("./fig/matadata_caption.png")
+```
+]
+.pull-right[
+```{r data2, echo=FALSE}
+data <- read.csv("./data/temperatures.csv")
+data
+```
+]
+
+---
+
+## La figure avec les données, les métadonnées et le script
+
+.pull-left[
+```{r fig4, echo=FALSE, eval=TRUE, out.width='80%'}
+knitr::include_graphics("./fig/temp.png")
+```
+
+```{r metadata2, echo=FALSE, out.width='80%'}
+knitr::include_graphics("./fig/matadata_caption.png")
+```
+]
+.pull-right[
+```{r data3, echo=FALSE}
+data <- read.csv("./data/temperatures.csv")
+data
+```
+
+```{r fig5, echo=FALSE}
+knitr::include_graphics("./fig/script.png")
+```
+]
+
+---
+
+## Un projet RStudio et Rmarkdown
+
+.pull-left[
+```{r rmarkdown, echo=FALSE}
+knitr::include_graphics("./fig/Rmarkdown.png")
+```
+]
+.pull-right[
+```{r htmlreport, echo=FALSE, out.width='66.5%'}
+knitr::include_graphics("./fig/html_report.png")
+```
+]
+
+---
+
+## Un projet RStudio, Rmarkdown et sessionInfo
+
+.pull-left[
+```{r rmarkdown2, echo=FALSE}
+knitr::include_graphics("./fig/Rmarkdown.png")
+```
+
+```{r session, echo=FALSE}
+knitr::include_graphics("./fig/session_info.png")
+```
+]
+.pull-right[
+```{r htmlreport2, echo=FALSE, out.width='66.5%'}
+knitr::include_graphics("./fig/html_report.png")
+```
+]
+
+---
+
+## Les gestionnaires de packages
+
+.pull-left[
+ `r htmltools::img(src = "./logos/renv.svg", height="100px", width="100px")`
+<br>
+<br>
+<br>
+ `r htmltools::img(src = "./logos/minicran.svg", height="100px", width="100px")` 
+]
+
+.pull-right[
+ checkpoint
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+ `r htmltools::img(src = "./logos/groundhog.png", height="69px", width="130px")` 
+]
+
+---
+
+## Make-like pipeline tool &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `r htmltools::img(src = "./logos/targets.svg", height="80.8px", width="73.7px")` 
+
+
+1. **Automatisation de Workflows Complexes.**
+
+2. **Reproductibilité.**
+
+3. **Parallélisation Efficace.**
+
+4. **Gestion Intégrée des Erreurs.**
+
+5. **Facilité de Maintenance.**
+
+6. **Intégration Harmonieuse.**
+
+7. **Documentation Complète.**
+
+<!--Gère les dépendances et les étapes de traitement de manière automatisée.
+Garantit la reproductibilité des résultats en enregistrant les dépendances et les paramètres.
+Exécute les étapes de manière parallèle pour une performance optimale.
+Identifie et gère efficacement les erreurs pour des workflows robustes.
+Simplifie la maintenance en permettant une organisation claire des workflows.
+S'intègre facilement avec d'autres packages R et outils de développement.
+Offre une documentation détaillée pour une utilisation facile et une meilleure compréhension -->
+
+---
+
+## "Packager" son analyse
+
+<div class="pull-left" style="font-size: 18px;">
+1. Les packages organisent le code de manière modulaire.<br>
+<br>
+2. Ils simplifient le partage et la réutilisation du code.<br>
+<br>
+3. Ils gèrent les dépendances de manière automatique.<br>
+<br>
+4. Ils intègrent des outils pour documenter et tester le code.<br>
+<br>
+5. Ils encouragent la collaboration entre développeurs.<br>
+<br>
+6. Ils facilitent le déploiement du code.<br>
+<br>
+7. Ils promeuvent les bonnes pratiques de développement.<br>
+<br>
+8. Ils simplifient la maintenance du code.<br>
+<br>
+9. Ils contribuent à la qualité du code.<br>
+</div>
+
+.pull-right[
+```{r packages, echo=FALSE}
+knitr::include_graphics("./fig/rpackages-tools.png")
+```
+]
+
+---
+
+## Utiliser des containers &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `r htmltools::img(src = "./logos/docker-logo-blue.svg", height="53.1px", width="233.4px")`
+
+```{r docker, echo=FALSE, out.width='90%'}
+knitr::include_graphics("./fig/docker-architecture.webp")
+```
+
+---
+
+## Systèmes de gestion de version
+
+| Caractéristique | Git                               | GitLab                            | GitHub                            |
+|-----------------|-----------------------------------|-----------------------------------|-----------------------------------|
+| Type            | Système de contrôle de version    | Plateforme de gestion de projets  | Plateforme de développement      |
+| Hébergement     | Local ou sur des serveurs distants| Peut être auto-hébergé ou en cloud| En cloud, propriété de Microsoft  |
+| Fonctionnalités | Basique                           | Avancées, incluant CI/CD         | Avancées, incluant CI/CD         |
+| Collaboration   | Peut être limitée aux collaborateurs locaux | Collaboration sur projets, issues, merge requests | Collaboration sur projets, issues, pull requests |
+| Intégration     | Intégration avec des outils tiers | Intégration native avec des outils de développement | Intégration native avec des outils de développement |
+| Popularité      | Très populaire, largement utilisé | Populaire parmi les développeurs | Très populaire, utilisé par de nombreux projets open-source |
+
+---
+
+## Les données
+
+- Stocker / archiver ses données dans un dépôt respectant les principes FAIR.
+
+```{r datacenter, echo=FALSE, out.width='60%'}
+knitr::include_graphics("./fig/datacenter.png")
+```
+
+---
+
+## Ressources
+
+<div class="small-text">
+
+<ul>
+  <li><strong>Jupyter Notebooks</strong> : <br>Environnement interactif pour créer et partager des documents contenant du code, des visualisations et du texte. <br><a href="https://jupyter.org/">Site Web</a></li>
+  <br>
+  <li><strong>R Markdown</strong> : <br>Extension de Markdown pour créer des rapports dynamiques et reproductibles avec du code intégré. <br><a href="https://rmarkdown.rstudio.com/">Site Web</a></li>
+  <br>
+  <li><strong>Git</strong> : <br>Système de contrôle de version pour suivre les modifications du code et collaborer avec d'autres chercheurs. <br><a href="https://git-scm.com/">Site Web</a></li>
+  <br>
+  <li><strong>Docker</strong> : <br>Plateforme de conteneurisation pour créer des environnements de développement isolés et reproductibles. <br><a href="https://www.docker.com/">Site Web</a></li>
+  <br>
+  <li><strong>Binder</strong> : <br>Service pour transformer des notebooks Jupyter en applications web interactives, facilitant le partage et la reproductibilité.<br> <a href="https://mybinder.org/">Site Web</a></li>
+  <br>
+  <li><strong>Snakemake</strong> : <br>Outil de gestion de workflow pour la création de pipelines de traitement de données reproductibles.<br> <a href="https://snakemake.readthedocs.io/en/stable/">Site Web</a></li>
+  <br>
+  <li><strong>targets</strong> : <br>Package R pour la définition et l'exécution de workflows reproductibles.<br><a href="https://books.ropensci.org/targets/">Site Web</a></li>
+</ul>
+
+</div>
